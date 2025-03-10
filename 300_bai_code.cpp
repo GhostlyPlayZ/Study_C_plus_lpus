@@ -440,8 +440,7 @@ int main()
 //- Số phải nhất(vị trí là 1, tính từ phải sang), là số kiểm tra(check digit). 
 //- Trọng số được tính từ phải qua trái(không tính check digit), bằng s1 + s2 :
 //+ s1 là tổng các số có vị trí lẻ.
-//+ Các số có vị trí chẵn nhân đôi.Nếu kết quả nhân đôi có hai chữ số thì kết quả là
-//tổng của hai chữ số này.s2 là tổng các kết quả.
+//+ Các số có vị trí chẵn nhân đôi.Nếu kết quả nhân đôi có hai chữ số thì kết quả là tổng của hai chữ số này.s2 là tổng các kết quả.
 //SIN hợp lệ có tổng trọng số với số kiểm tra chia hết cho 10.
 //Ví dụ : SIN 193456787 - Số kiểm tra là 7 (màu xanh tô đậm). - Trọng số là tổng của s1 và s2, với: +s1 = 1 + 3 + 5 + 7 = 16
 //+ Các số có vị trí chẵn nhân đôi : (9 * 2) (4 * 2) (6 * 2) (8 * 2)  18 8 12 16
@@ -450,72 +449,168 @@ int main()
 //Vì tổng trọng số với số kiểm tra 43 + 7 = 50 chia hết cho 10 nên số SIN hợp lệ.
 //Viết chương trình nhập một số SIN.Kiểm tra xem số SIN đó có hợp lệ hay không.
 //Nhập 0 để thoát.
-
+/*
 #include<iostream>
 #include<string>
+#include<vector> //Thư viện mảng động vector
 using namespace std;
 
-bool Kiem_tra_so_luong_so(int SIN)
+bool Check(int SIN)
 {
-	int sl = 0;
+	int element=0;
 	while (SIN != 0)
 	{
 		SIN = SIN / 10;
-		sl++;
+		element++;
 	}
-
-	if (sl == 9)
-	{
-		return true;
-	}
-	else
+	if (element != 9)
 	{
 		return false;
 	}
+	else
+	{
+		return true;
+	}
 }
 
-int So_kiem_tra(int SIN) //Số cuối cùng tính từ trái qua phải
+int Check_number(int number) // Số ngoài cùng nằm bên phải
 {
-	int check = SIN % 10;
-	return check;
+	return number % 10;
 }
 
-void Tong_cac_so_co_vi_tri_le(int SIN)
+int Sum_odd(int number) // Tổng các số ở vị trí lẻ
 {
-	string str = to_string(SIN); //Chuyển đổi số SIN thành chuỗi
-	int S1 = 0;
+	string str = to_string(number);
+	int sum = 0;
+	for (int i = 0; i < str.length(); i++) //Mảng bắt đầu từ 0 
+	{
+		if (i % 2 == 0) // Bắt đầu từ 0
+		{
+			sum = sum + (str[i]-'0'); //Chuyển kí tự sang số
+		}
+	}
+	return sum;
+}
 
-	for (int i = 1; i <= str.length(); i++)
+int Sum_even(int number)
+{
+	string str = to_string(number);
+	int sumNum = 0;
+	for (int i = 0; i < str.length(); i++)
 	{
 		if (i % 2 != 0)
 		{
-			cout << str[i] << " ";
-			S1 = S1 + str[i];
+			int doubleNum = (str[i] - '0') * 2;
+			if (doubleNum >= 10)
+			{
+				sumNum = sumNum + (doubleNum / 10) + (doubleNum % 10);
+			}
+			else
+			{
+				sumNum = sumNum + doubleNum;
+			}
 		}
 	}
-	cout << S1 << endl;
+	return 0;
 }
+/*
+vector<int> Even_number(int number) // Các số ở vị trí chẵn(Theo mảng)
+{
+	string str = to_string(number);
+	vector<int> arr_result; //Khai báo mảng động
+	for (int i = 0; i < str.length(); i++) //Mảng bắt đầu từ 0
+	{
+		if (i % 2 == 0)
+		{
+			int sumMutiply;
+			sumMutiply =(str[i] - '0') * 2; //Chuyển kí tự sang số
+			arr_result.push_back(sumMutiply); //Đẩy giá trị vào mảng
+		}
+	}
+	return arr_result;
+}
+
+int Sum_even(vector<int> arr) // Tổng các số ở vị trí chẵn
+{
+	int sum = 0;
+	for (int i = 0; i < arr.size(); i++)
+	{
+		sum = sum + (arr[i] / 10) + (arr[i] % 10);
+	}
+	cout << sum << endl;
+	return sum;
+}
+*/
 
 int main()
 {
 	int SIN;
+	cout << "Nhap 0 de thoat" << endl;
 	cout << "Nhap so SIN: ";
 	cin >> SIN;
 
-	while (SIN != 0)
-	{
-		if (Kiem_tra_so_luong_so(SIN) == false)
-		{
+	while (SIN != 0) {
+		if (Check(SIN)==true) {
+			int S1 = Sum_odd(SIN);
+			int S2 = Sum_even(SIN);
+			int S = S1 + S2;
+			if ((S + Check_number(SIN)) % 10 == 0)
+			{
+				cout << "So SIN hop le" << endl;
+			}
+			else
+			{
+				cout << "So SIN khong hop le" << endl;
+			}
+		}
+		else {
 			cout << "So SIN khong hop le" << endl;
-			cout << "Nhap so SIN: ";
-			cin >> SIN;
 		}
-		else
-		{
-			cout << "So SIN hop le" << endl;
-			Tong_cac_so_co_vi_tri_le(SIN);
-			break;
-		}
+		cout << endl;
+		cout << "Nhap 0 de thoat" << endl;
+		cout << "Nhap so SIN: ";
+		cin >> SIN;
+	}
+	return 0;
+}
+*/
+
+//Viết trò chơi bao - đá - kéo với luật chơi: bao thắng đá, đá thắng kéo, kéo 
+//thắng bao.Người dùng nhập vào một trong ba ký tự b(bao), d(đá), k(kéo); máy
+//tính sinh ngẫu nhiên một trong ba ký tự trên, thông báo kết quả chơi.
+
+#include<iostream>
+using namespace std;
+
+char computer_choice()
+{
+	int choice = rand() % 3;
+	if (choice == 0)
+	{
+		return 'b';
+	}
+	else if (choice == 1)
+	{
+		return 'd';
+	}
+	else
+	{
+		return 'k';
+	}
+}
+
+int main()
+{
+	char choice;
+	cout << "Nhap item: ";
+	cin >> choice;
+	if (choice != 'b' || choice != 'd' || choice != 'k')
+	{
+		cout << "item khong hop le" << endl;
+	}
+	else
+	{
+
 	}
 	return 0;
 }
