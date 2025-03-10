@@ -540,7 +540,6 @@ int Sum_even(vector<int> arr) // Tổng các số ở vị trí chẵn
 	cout << sum << endl;
 	return sum;
 }
-*/
 
 int main()
 {
@@ -575,42 +574,134 @@ int main()
 }
 */
 
-//Viết trò chơi bao - đá - kéo với luật chơi: bao thắng đá, đá thắng kéo, kéo 
+//Viết trò chơi bao - đá - kéo với luật chơi: bao thắng đá, đá thắng kéo, kéo (kéo-búa-bao)
 //thắng bao.Người dùng nhập vào một trong ba ký tự b(bao), d(đá), k(kéo); máy
 //tính sinh ngẫu nhiên một trong ba ký tự trên, thông báo kết quả chơi.
-
+/*
 #include<iostream>
 using namespace std;
 
 char computer_choice()
 {
-	int choice = rand() % 3;
-	if (choice == 0)
-	{
-		return 'b';
-	}
-	else if (choice == 1)
-	{
-		return 'd';
-	}
-	else
-	{
-		return 'k';
-	}
+	srand(time(NULL)); //Hàm sinh số ngẫu nhiên ngoài null có thể để là 0 hoặc bất kỳ số nào (NULL tương đương với 0)
+	int random = rand() % 3; //Sinh số ngẫu nhiên từ 0-2
+	char computer_choice[] = {'b', 'd', 'k'};
+	return computer_choice[random];
 }
 
 int main()
 {
-	char choice;
-	cout << "Nhap item: ";
-	cin >> choice;
-	if (choice != 'b' || choice != 'd' || choice != 'k')
-	{
-		cout << "item khong hop le" << endl;
-	}
-	else
-	{
+	char human_choice;
+	cout << "Nhap item hoac nhap 0 de thoat: ";
+	cin >> human_choice;
 
+	int h = 0;
+	int c = 0;
+	
+	while (human_choice != 0)
+	{
+		if (human_choice == 'g')
+		{
+			cout << "Computer said: WTF dude ?!";
+			break;
+		}
+		if (human_choice != 'b' && human_choice != 'd' && human_choice != 'k')
+		{
+			cout << "item khong hop le" << endl;
+			cout << "Nhap item hoac nhap 0 de thoat: ";
+			cin >> human_choice;
+			cout << endl;
+		}
+		else
+		{
+			char cc = computer_choice();
+			cout <<"Computer choice: "<< cc << endl;
+
+			if ((human_choice == 'b' && cc == 'd') || (human_choice == 'd' && cc == 'k') || (human_choice == 'k' && cc == 'b'))
+			{
+				h++;
+				cout << "H: " << h << " - " << "C: " << c << endl;
+			}
+			else
+			{
+				c++;
+				cout << "H: " << h << " - " << "C: " << c << endl;
+			}
+
+			if (h == 3 || c == 3)
+			{
+				if (h == 3)
+				{
+					cout << "Human win" << endl;
+				}
+				else
+				{
+					cout << "Computer win" << endl;
+				}
+				break;
+			}
+			cout << "Nhap item hoac nhap 0 de thoat: ";
+			cin >> human_choice;
+			cout << endl;
+		}
 	}
 	return 0;
 }
+*/
+
+//Bài 12: Viết chương trình giải hệ phương trình 2 ẩn: 
+//a1x + b1y = c1
+//a2x + b2y = c2
+
+//Phương pháp Cramer:
+//D=a1*b2-a2*b1
+//Dx=c1*b2-c2*b1
+//Dy=a1*c2-a2*c1
+//x=Dx/D
+//y=Dy/D
+
+/*
+#include<iostream>
+using namespace std;
+
+int D(int a1, int b1, int a2, int b2)
+{
+	return a1 * b2 - a2 * b1;
+}
+
+int Dx(int c1, int b1, int c2, int b2)
+{
+	return c1 * b2 - c2 * b1;
+}
+
+int Dy(int a1, int c2, int a2, int c1)
+{
+	return a1 * c2 - a2 * c1;
+}
+
+int main()
+{
+	int a1, b1, c1, a2, b2, c2;
+	cout << "Nhap a1, b1, c1: ";
+	cin >> a1 >> b1 >> c1;
+	cout << "Nhap a2, b2, c2: ";
+	cin >> a2 >> b2 >> c2;
+
+	int x;
+	int y;
+
+	cout << "He phuong trinh co nghiem: " << endl;
+	if (D(a1, b1, a2, b2) != 0)
+	{
+		x = Dx(c1, b1, c2, b2) / D(a1, b1, a2, b2);
+		y = Dy(a1, c2, a2, c1) / D(a1, b1, a2, b2);
+		cout << "x = " << x << endl;
+		cout << "y = " << y << endl;
+	}
+	else
+	{
+		cout << "He phuong trinh vo nghiem" << endl;
+	}
+	return 0;
+}
+*/
