@@ -830,4 +830,23 @@ int main()
 }
 */
 
-//Bài 14
+//Bài 14: Viết chương trình nhập vào ngày, tháng, năm. Tìm ngày, tháng, năm của ngày tiếp theo. 
+//Tương tự, tìm ngày, tháng, năm của ngày ngay trước đó
+
+#include<iostream>
+#include<ctime>
+#include<iomanip>
+using namespace std;
+
+
+int main() {
+	if (__cplusplus == 202101L) std::cout << "C++23";
+	else if (__cplusplus == 202002L) std::cout << "C++20";
+	else if (__cplusplus == 201703L) std::cout << "C++17";
+	else if (__cplusplus == 201402L) std::cout << "C++14";
+	else if (__cplusplus == 201103L) std::cout << "C++11";
+	else if (__cplusplus == 199711L) std::cout << "C++98";
+	else std::cout << "__cplusplus: " << __cplusplus;
+	std::cout << std::endl;
+	return 0;
+}
