@@ -705,3 +705,129 @@ int main()
 	return 0;
 }
 */
+
+//: Viết chương trình nhập vào ngày, tháng, năm. Kiểm tra ngày và tháng nhập có hợp lệ hay không.Tính thứ trong tuần của ngày đó.
+//(1) Chủ nhật
+//(2) Thứ hai
+//(3) Thứ ba
+//(4) Thứ tư
+//(5) Thứ năm
+//(6) Thứ sáu
+//(7) Thứ bảy
+/*
+#include<iostream>
+#include<string>
+using namespace std;
+void Kiem_tra_ngay_trong_thang(int day, int month)
+{
+	if (day == 31)
+	{
+		switch (month)
+		{
+		case 2:
+			cout << "Thang 2 chi co 28 ngay tru nam nhuan la 29 ngay" << endl;
+			break;
+		case 4:
+			cout << "Thang 4 chi co 30 ngay" << endl;
+			break;
+		case 6:
+			cout << "Thang 6 chi co 30 ngay" << endl;
+			break;
+		case 9:
+			cout << "Thang 9 chi co 30 ngay" << endl;
+			break;
+		case 11:
+			cout << "Thang 11 chi co 30 ngay" << endl;
+			break;
+		}
+	}
+}
+
+int Lay_2_chu_so_cuoi_cua_nam(int year)
+{
+	return year % 100;
+}
+
+int Lay_cacl_chu_so_dau_cua_nam(int year)
+{
+	return year / 100;
+}
+int main()
+{
+	int day, month, year;
+	cout << "Nhap ngay, thang, nam: ";
+	cin >> day >> month >> year;
+
+	if (day < 1 || day > 31 || month < 1 || month > 12 || year < 1)
+	{
+		cout << "Ngay thang nam khong hop le" << endl;
+	}
+	else
+	{
+		Kiem_tra_ngay_trong_thang(day, month);
+
+		if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) // Năm nhuận chia hết cho 4 và không chia hết cho 100 hoặc chia hết cho 400
+		{
+			cout << year << " la nam nhuan" << endl;
+		}
+		else
+		{
+			cout << year << " khong phai la nam nhuan" << endl;
+			if (month == 2 && day == 29)
+			{
+				cout << "Thang 2 chi co 28 ngay tru nam nhuan la 29 ngay" << endl;
+				return 0;
+			}
+		}
+
+		//Công thức zeller tính thứ trong tuần biết ngày, tháng, năm
+		//day:ngày
+		//mont:háng
+		//K: năm thế kỷ(2 chữ số cuối)
+		//J: thế kỷ(các chữ số đầu)
+		//h: thứ trong tuần
+
+		if (month == 2) //theo quy tắc của Zeller, tháng 1 và 2 được coi là tháng 13 và 14 của năm trước
+		{
+			month = 14;
+			year = year - 1;
+		}
+
+		int K = Lay_2_chu_so_cuoi_cua_nam(year);
+		int J = Lay_cacl_chu_so_dau_cua_nam(year);
+
+		int h = (day + (13 * (month + 1) / 5) + K + (K / 4) + (J / 4) - (2*J)) % 7;
+
+		switch (h)
+		{
+		case 1:
+			cout << "Chu nhat" << endl;
+			break;
+		case 2:
+			cout << "Thu 2" << endl;
+			break;
+		case 3:
+			cout << "Thu 3" << endl;
+			break;
+		case 4:
+			cout << "Thu 4" << endl;
+			break;
+		case 5:
+			cout << "Thu 5" << endl;
+			break;
+		case 6:
+			cout << "Thu 6" << endl;
+			break;
+		case 7:
+			cout << "Thu 7" << endl;
+			break;
+		default:
+			cout << "Thu trong tuan khong hop le" << endl;
+			break;
+		}
+	}
+	return 0;
+}
+*/
+
+//Bài 14
