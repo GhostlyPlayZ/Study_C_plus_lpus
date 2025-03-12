@@ -830,23 +830,215 @@ int main()
 }
 */
 
+
+//Bonus: Tham chiếu
+/*
+#include <iostream>
+using namespace std;
+
+void f(int& x) //x là tham chiếu được gán địa chỉ của a
+{
+	x = x-1;
+}
+
+int main()
+{
+	int a = 10;
+	f(a);
+	cout << a << endl; //a = 9 vì a được truyền vào hàm f và thực hiện phép trừ 1
+	return 0;
+}
+*/
+
+
 //Bài 14: Viết chương trình nhập vào ngày, tháng, năm. Tìm ngày, tháng, năm của ngày tiếp theo. 
 //Tương tự, tìm ngày, tháng, năm của ngày ngay trước đó
 
 #include<iostream>
-#include<ctime>
-#include<iomanip>
+#include<ctime> //Thư viện thời gian
+#include<iomanip> //Thư viện cung cấp các hàm để định dạng đầu ra
+#include<string>
 using namespace std;
 
+void Nhap_ngay_thang_nam(int& day, int& month, int& year)
+{
+	cout << "Nhap ngay: ";
+	cin >> day;
+
+	cout << "Nhap thang: ";
+	cin >> month;
+
+	cout << "Nhap nam: ";
+	cin >> year;
+
+	cout << endl;
+}
+
+bool Kiem_tra_dinh_dang(int day, int month, int year)
+{
+	if (day < 1 || day > 31 || month < 1 || month > 12)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
+bool Kiem_tra_nam_nhuan(int year)
+{
+	if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) // Năm nhuận chia hết cho 4 và không chia hết cho 100 hoặc chia hết cho 400
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+string print_year(int year)
+{
+	if (year < 0)
+	{
+		year = year * -1;
+		return (to_string(year) + " TCN");
+	}
+	return to_string(year);
+}
+
+void Ngay_tiep_theo(int &day, int &month, int &year)
+{
+	if (day == 31 && (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12))
+	{
+		day = 1;
+		if (month == 12)
+		{
+			month = 1;
+			year++;
+		}
+		else
+		{
+			month++;
+		}
+	}
+	else if (day == 30 && (month == 4 || month == 6 || month == 9 || month == 11))
+	{
+		day = 1;
+		month++;
+	}
+	else if (Kiem_tra_nam_nhuan(year) == true && month == 2 && day == 29)
+	{
+		day = 1;
+		month++;
+	}
+	else if (Kiem_tra_nam_nhuan(year) == false && month == 2 && day == 28)
+	{
+		day = 1;
+		month++;
+	}
+	else
+	{
+		day++;
+	}
+}
+
+void Ngay_hom_qua(int& day, int& month, int& year)
+{
+	if (day == 1)
+	{
+		if (month == 1)
+		{
+			day = 31;
+			month = 12;
+			year--;
+		}
+		else
+		{
+			month--;
+			if (month == 4 || month == 6 || month == 9 || month == 11)
+			{
+				day = 30;
+			}
+			else if(Kiem_tra_nam_nhuan(year) == true && month == 2)
+			{
+				day = 29;
+			}
+			else if (Kiem_tra_nam_nhuan(year) == false && month == 2)
+			{
+				day = 28;
+			}
+			else
+			{
+				day = 31;
+			}
+		}
+	}
+	else
+	{
+		day--;
+	}
+}
 
 int main() {
-	if (__cplusplus == 202101L) std::cout << "C++23";
-	else if (__cplusplus == 202002L) std::cout << "C++20";
-	else if (__cplusplus == 201703L) std::cout << "C++17";
-	else if (__cplusplus == 201402L) std::cout << "C++14";
-	else if (__cplusplus == 201103L) std::cout << "C++11";
-	else if (__cplusplus == 199711L) std::cout << "C++98";
-	else std::cout << "__cplusplus: " << __cplusplus;
-	std::cout << std::endl;
+	int day, month, year;
+
+	do
+	{
+		cout << "Nhap ngay thang nam = 0 de thoat" << endl;
+		cout << endl;
+		Nhap_ngay_thang_nam(day, month, year);
+
+		if (Kiem_tra_dinh_dang(day, month, year)==false)
+		{
+			cout << "Du lieu ngay thang nam nhap vao khong dung" << endl;
+			continue;
+		}
+		else
+		{
+			if (Kiem_tra_nam_nhuan(year) == false)
+			{
+				if (month == 2 && day > 28)
+				{
+					cout << "Thang 2 chi co 28 ngay tru nam nhuan la 29 ngay" << endl;
+					continue;
+				}
+				else
+				{
+					int curent_day = day;
+					Ngay_tiep_theo(day, month, year);
+					
+					cout << "Ngay tiep theo: " << day << "/" << month << "/" << print_year(year) << endl;
+					cout << endl;
+					day=curent_day;
+					Ngay_hom_qua(day, month, year);
+					cout << "Ngay hom qua: " << day << "/" << month << "/" << print_year(year) << endl;
+					cout << endl;
+					continue;
+				}
+			}
+			else
+			{
+				if (month == 2 && day > 29)
+				{
+					cout << "Thang 2 chi co 28 ngay tru nam nhuan la 29 ngay" << endl;
+					continue;
+				}
+				else
+				{
+					int curent_day = day;
+					Ngay_tiep_theo(day, month, year);
+					cout << "Ngay tiep theo: " << day << "/" << month << "/" << year << endl;
+					cout << endl;
+					day = curent_day;
+					Ngay_hom_qua(day, month, year);
+					cout << "Ngay hom qua: " << day << "/" << month << "/" << year << endl;
+					cout << endl;
+					continue;
+				}
+			}
+		}
+	} while (day != 0 && month != 0 && year != 0);
 	return 0;
 }
