@@ -1049,10 +1049,105 @@ int main() {
 #include <iostream>
 using namespace std;
 
+void Input_date(int &day, int &month, int &year)
+{
+	cout << "Intput time data: " << endl;
+	cout << "Input date: ";
+	cin >> day;
+	cout << "Input month: ";
+	cin >> month;
+	cout << "year: ";
+	cin >> year;
+}
 
+bool Check_valid_input(int day, int month, int year)
+{
+	if (day <= 0 || day > 31 || month <= 0 || month > 12)
+	{
+		return false;
+	}
+	return true;
+}
+
+bool Check_leap_year(int year)
+{
+	if ((year % 4 == 0) && (year % 100 != 0))
+	{
+		return true;
+	}
+	return false;
+}
+
+void Calculate_date_in_year(int day, int month, int year)
+{
+	int result=0;
+	for (int i = 1; i <= month; i++)
+	{
+		if (Check_leap_year(year) == true)
+		{
+			if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12)
+			{
+				result = result + 31;
+			}
+			else
+			{
+				if (i == 2)
+				{
+					result = result + 29;
+				}
+				{
+					result = result + 30;
+				}
+			}
+		}
+		else
+		{
+			if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12)
+			{
+				result = result + 31;
+			}
+			else
+			{
+				if (i == 2)
+				{
+					result = result + 28;
+				}
+				{
+					result = result + 30;
+				}
+			}
+		}
+	}
+}
 
 int main()
 {
+	int type = 0;
+	cout << "Type 1 when you ready ";
+	cin >> type;
+	do
+	{
+		int day, month, year;
+		Input_date(day, month, year);
+		if (Check_valid_input(day, month, year) == false)
+		{
+			cout << "Date input not valid" << endl;
+			break;
+		}
+		else
+		{
+			if (Check_leap_year(year)==true)
+			{
+				cout << "Leap year";
+			}
+			else
+			{
+				cout << "Not leap year";
+			}
+		}
+		cout << "Type 0 to exit ";
+		cin >> type;
+	} while (type != 0);
 
 	return 0;
 }
