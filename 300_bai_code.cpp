@@ -853,7 +853,7 @@ int main()
 
 //Bài 14: Viết chương trình nhập vào ngày, tháng, năm. Tìm ngày, tháng, năm của ngày tiếp theo. 
 //Tương tự, tìm ngày, tháng, năm của ngày ngay trước đó
-
+/*
 #include<iostream>
 #include<ctime> //Thư viện thời gian
 #include<iomanip> //Thư viện cung cấp các hàm để định dạng đầu ra
@@ -1040,5 +1040,19 @@ int main() {
 			}
 		}
 	} while (day != 0 && month != 0 && year != 0);
+	return 0;
+}
+*/
+
+//Bài 15: Viết chương trình nhập vào ngày, tháng, năm. Tìm xem ngày đó là ngày thứ bao nhiêu trong năm.
+
+#include <iostream>
+using namespace std;
+
+
+
+int main()
+{
+
 	return 0;
 }
