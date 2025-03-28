@@ -1047,6 +1047,7 @@ int main() {
 //Bài 15: Viết chương trình nhập vào ngày, tháng, năm. Tìm xem ngày đó là ngày thứ bao nhiêu trong năm.
 
 #include <iostream>
+#include <string>
 using namespace std;
 
 void Input_date(int &day, int &month, int &year)
@@ -1078,10 +1079,10 @@ bool Check_leap_year(int year)
 	return false;
 }
 
-void Calculate_date_in_year(int day, int month, int year)
+int Calculate_date_in_year(int day, int month, int year)
 {
 	int result=0;
-	for (int i = 1; i <= month; i++)
+	for (int i = 1; i < month; i++)
 	{
 		if (Check_leap_year(year) == true)
 		{
@@ -1089,34 +1090,94 @@ void Calculate_date_in_year(int day, int month, int year)
 			{
 				result = result + 31;
 			}
+			else if (i == 4 || i == 6 || i == 9 || i == 11)
+			{
+				result = result + 30;
+			}
 			else
 			{
-				if (i == 2)
-				{
-					result = result + 29;
-				}
-				{
-					result = result + 30;
-				}
+				result = result + 29;
 			}
 		}
 		else
 		{
-			if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12)
+			if(i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12)
 			{
 				result = result + 31;
 			}
+			else if (i == 4 || i == 6 || i == 9 || i == 11)
+			{
+				result = result + 30;
+			}
 			else
 			{
-				if (i == 2)
-				{
-					result = result + 28;
-				}
-				{
-					result = result + 30;
-				}
+				result = result + 28;
 			}
 		}
+	}
+	return result = result + day;
+}
+
+string add_post(int day)
+{
+	if (day == 1 || day % 10 == 0 || day % 10 == 1)
+	{
+		return(to_string(day) + "st");
+	}
+	else if (day == 2 || day % 10 == 2)
+	{
+		return(to_string(day) + "nd");
+	}
+	else if (day == 3 || day % 10 == 3)
+	{
+		return(to_string(day) + "rd");
+	}
+	else
+	{
+		return(to_string(day) + "th");
+	}
+}
+
+string define_month(int month)
+{
+	switch (month)
+	{
+	case 1:
+		return "January";
+		break;
+	case 2:
+		return "February";
+		break;
+	case 3:
+		return "March";
+		break;
+	case 4:
+		return "April";
+		break;
+	case 5:
+		return "May";
+		break;
+	case 6:
+		return "June";
+		break;
+	case 7:
+		return "July";
+		break;
+	case 8:
+		return "August";
+		break;
+	case 9:
+		return "September";
+		break;
+	case 10:
+		return "October";
+		break;
+	case 11:
+		return "November";
+		break;
+	case 12:
+		return "December";
+		break;
 	}
 }
 
@@ -1136,14 +1197,7 @@ int main()
 		}
 		else
 		{
-			if (Check_leap_year(year)==true)
-			{
-				cout << "Leap year";
-			}
-			else
-			{
-				cout << "Not leap year";
-			}
+			cout<<add_post(day)<<" "<< Calculate_date_in_year(day, month, year) << endl;
 		}
 		cout << "Type 0 to exit ";
 		cin >> type;
