@@ -1079,7 +1079,7 @@ bool Check_leap_year(int year)
 	return false;
 }
 
-int Calculate_date_in_year(int day, int month, int year)
+string Calculate_date_in_year(int day, int month, int year)
 {
 	int result=0;
 	for (int i = 1; i < month; i++)
@@ -1115,7 +1115,24 @@ int Calculate_date_in_year(int day, int month, int year)
 			}
 		}
 	}
-	return result = result + day;
+	result = result + day;
+
+	if (result == 1 || result % 10 == 0 || result % 10 == 1)
+	{
+		return(to_string(result) + "st");
+	}
+	else if (result == 2 || result % 10 == 2)
+	{
+		return(to_string(result) + "nd");
+	}
+	else if (result == 3 || result % 10 == 3)
+	{
+		return(to_string(result) + "rd");
+	}
+	else
+	{
+		return(to_string(result) + "th");
+	}
 }
 
 string add_post(int day)
@@ -1181,6 +1198,16 @@ string define_month(int month)
 	}
 }
 
+string Define_year(int year)
+{
+	if (year < 0)
+	{
+		year = year * (-1);
+		return(to_string(year) + "BC");
+	}
+	return(to_string(year));
+}
+
 int main()
 {
 	int type = 0;
@@ -1197,7 +1224,7 @@ int main()
 		}
 		else
 		{
-			cout<<add_post(day)<<" "<< Calculate_date_in_year(day, month, year) << endl;
+			cout<<define_month(month) <<" "<<add_post(day)<<" "<< Define_year(year) << " is the " << Calculate_date_in_year(day, month, year) << " day of the year" << endl;
 		}
 		cout << "Type 0 to exit ";
 		cin >> type;
