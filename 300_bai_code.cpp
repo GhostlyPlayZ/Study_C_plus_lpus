@@ -1045,7 +1045,7 @@ int main() {
 */
 
 //Bài 15: Viết chương trình nhập vào ngày, tháng, năm. Tìm xem ngày đó là ngày thứ bao nhiêu trong năm.
-
+/*
 #include <iostream>
 #include <string>
 using namespace std;
@@ -1232,3 +1232,4 @@ int main()
 
 	return 0;
 }
+*/
