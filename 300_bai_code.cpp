@@ -1237,8 +1237,6 @@ int main()
 //Bài 13: Viết chương trình nhập vào một năm (> 1582), in lịch của năm đó. Tính thứ cho ngày đầu năm bằng công thức Zeller
 
 #include<iostream>
-#include<string>
-
 
 
 int main() {
