@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "F:\\C\u002B\u002B Practice\\Study_C_plus_lpus\\",
+  "WorkspaceRootPath": "E:\\Hacker rank\\Study_C_plus_lpus\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F3896BB2-81E4-4CC9-A289-9F658C6271E0}|300_bai_code.vcxproj|F:\\C\u002B\u002B Practice\\Study_C_plus_lpus\\300_bai_code.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{F3896BB2-81E4-4CC9-A289-9F658C6271E0}|300_bai_code.vcxproj|E:\\Hacker rank\\Study_C_plus_lpus\\300_bai_code.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F3896BB2-81E4-4CC9-A289-9F658C6271E0}|300_bai_code.vcxproj|solutionrelative:300_bai_code.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -24,11 +24,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "300_bai_code.cpp",
-              "DocumentMoniker": "F:\\C\u002B\u002B Practice\\Study_C_plus_lpus\\300_bai_code.cpp",
+              "DocumentMoniker": "E:\\Hacker rank\\Study_C_plus_lpus\\300_bai_code.cpp",
               "RelativeDocumentMoniker": "300_bai_code.cpp",
-              "ToolTip": "F:\\C\u002B\u002B Practice\\Study_C_plus_lpus\\300_bai_code.cpp",
+              "ToolTip": "E:\\Hacker rank\\Study_C_plus_lpus\\300_bai_code.cpp",
               "RelativeToolTip": "300_bai_code.cpp",
-              "ViewState": "AgIAALwEAAAAAAAAAAAAANIEAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAPEEAAAAAAAAAAAIwP0EAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-03T08:34:21.942Z",
               "EditorCaption": ""

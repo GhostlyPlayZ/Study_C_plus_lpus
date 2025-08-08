@@ -1237,8 +1237,50 @@ int main()
 //Bài 13: Viết chương trình nhập vào một năm (> 1582), in lịch của năm đó. Tính thứ cho ngày đầu năm bằng công thức Zeller
 
 #include<iostream>
+using namespace std;
 
+class Date
+{
+private:
+	int day;
+	int month;
+	long year;
+
+	void intput()
+	{
+		cout << "Enter day: ";
+		cin >> day;
+		cout << "Enter month: ";
+		cin >> month;
+		cout << "Enter year: ";
+		cin >> year;
+	}
+
+	void yearCheck()
+	{
+		if (year <=1582)
+		{
+			cout << "Year must bigger than 1582" << endl;
+		}
+	}
+
+public:
+	Date()
+	{
+		day = 0;
+		month = 0;
+		year = 0;
+	}
+
+	void Execute()
+	{
+		intput();
+		yearCheck();
+	}
+};
 
 int main() {
+	Date d;
+	d.Execute();
 	return 0;
 }
