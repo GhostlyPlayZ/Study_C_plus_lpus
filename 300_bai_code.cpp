@@ -1256,14 +1256,37 @@ private:
 		cin >> year;
 	}
 
+	void output()
+	{
+		
+	}
+
 	void yearCheck()
 	{
 		if (year <=1582)
 		{
 			cout << "Year must bigger than 1582" << endl;
+			return;
 		}
 	}
 
+	void monthCheck()
+	{
+		if (month > 12 || month < 1)
+		{
+			cout << "Invalid month" << endl;
+			return;
+		}
+	}
+
+	void dayCheck()
+	{
+		if (day > 31 || day < 1)
+		{
+			cout << "Invalid day" << endl;
+			return;
+		}
+	}
 public:
 	Date()
 	{
@@ -1276,6 +1299,8 @@ public:
 	{
 		intput();
 		yearCheck();
+		monthCheck();
+		dayCheck();
 	}
 };
 
