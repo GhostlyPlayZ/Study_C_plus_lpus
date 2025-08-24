@@ -1236,7 +1236,9 @@ int main()
 
 //Bài 16: Viết chương trình nhập vào một năm (> 1582), in lịch của năm đó. Tính thứ cho ngày đầu năm bằng công thức Zeller
 
+
 #include<iostream>
+#include <string>
 using namespace std;
 
 class Date
@@ -1246,47 +1248,32 @@ private:
 	int month;
 	long year;
 
-	void intput()
+	void input()
 	{
-		cout << "Enter day: ";
-		cin >> day;
-		cout << "Enter month: ";
-		cin >> month;
 		cout << "Enter year: ";
 		cin >> year;
 	}
-
-	void output()
+	
+	void Zeller_calculate(int d, int m, int y)
 	{
-		
-	}
-
-	void yearCheck()
-	{
-		if (year <=1582)
+		if (m == 1)
 		{
-			cout << "Year must bigger than 1582" << endl;
-			return;
+			m = 13;
+			y--;
 		}
-	}
-
-	void monthCheck()
-	{
-		if (month > 12 || month < 1)
+		if (m == 2)
 		{
-			cout << "Invalid month" << endl;
-			return;
+			m = 14;
+			y--;
 		}
-	}
 
-	void dayCheck()
-	{
-		if (day > 31 || day < 1)
-		{
-			cout << "Invalid day" << endl;
-			return;
-		}
+		int q = d; //ngày trong tháng
+		int K = y % 100; //năm trong thế kỷ
+		int J = y / 100; //thế kỷ
+
+		int h = (q + (13 * (m + 1)) / 5 + K + (K / 4) + (J / 4) + (5 * J)) % 7; //Cong thuc zeller
 	}
+	
 public:
 	Date()
 	{
@@ -1297,10 +1284,31 @@ public:
 
 	void Execute()
 	{
-		intput();
-		yearCheck();
-		monthCheck();
-		dayCheck();
+		do
+		{
+			input();
+			if (year <= 1582)
+			{
+				cout << "Year must bigger than 1582" << endl;
+			}
+			else
+			{
+				string Months[] = { "January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December" };
+				string Days[] = { "MO","TU","WE","TH","FR","ST","SU" };
+				for (int i = 0; i < 12; i++)
+				{
+					cout << Months[i] <<": "<< endl;
+					cout << endl;
+					cout << "\t";
+					for (int j = 0; j < 7; j++)
+					{
+						cout << Days[j]<< "\t";
+					}
+					cout << endl;
+					cout << endl;
+				}
+			}
+		} while (true);
 	}
 };
 
