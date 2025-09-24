@@ -1235,10 +1235,10 @@ int main()
 */
 
 //Bài 16: Viết chương trình nhập vào một năm (> 1582), in lịch của năm đó. Tính thứ cho ngày đầu năm bằng công thức Zeller
-
-
+/*
 #include<iostream>
 #include <string>
+#include<iomanip>
 using namespace std;
 
 class Date
@@ -1253,27 +1253,54 @@ private:
 		cout << "Enter year: ";
 		cin >> year;
 	}
-	
-	void Zeller_calculate(int d, int m, int y)
+
+	int Zeller(int d, int m, int y)
 	{
 		if (m == 1)
 		{
 			m = 13;
-			y--;
+			y = y - 1;
 		}
-		if (m == 2)
+		else if (m == 2)
 		{
 			m = 14;
-			y--;
+			y = y - 1;
 		}
 
-		int q = d; //ngày trong tháng
-		int K = y % 100; //năm trong thế kỷ
-		int J = y / 100; //thế kỷ
+		int q = d;  //Ngày
+		int K = y % 100;    //Nam cua the ky
+		int J = y / 100;    //So the ky
 
-		int h = (q + (13 * (m + 1)) / 5 + K + (K / 4) + (J / 4) + (5 * J)) % 7; //Cong thuc zeller
+		int h = (q + (13 * (m + 1)) / 5 + K + (K / 4) + (J / 4) + (5 * J)) % 7;
+
+		int dayOfWeek = ((h + 5) % 7) + 1; //Chuyển đổi kết quả để phù hợp với định dạng 1-7 (Chủ nhật - Thứ bảy)
+
+		return dayOfWeek;
 	}
-	
+
+	int dayInMonth(int month, int year)
+	{
+		if (month == 4 || month == 6 || month == 9 || month == 11)
+		{
+			return 30;
+		}
+		else if (month == 2)
+		{
+			if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)
+			{
+				return 29;
+			}
+			else
+			{
+				return 28;
+			}
+		}
+		else
+		{
+			return 31;
+		}
+	}
+
 public:
 	Date()
 	{
@@ -1282,27 +1309,41 @@ public:
 		year = 0;
 	}
 
-	void Execute()
+	void execute() 
 	{
-		do
-		{
+		do {
 			input();
-			if (year <= 1582)
-			{
-				cout << "Year must bigger than 1582" << endl;
+			if (year < 1583) {
+				cout << "Year must be greater than 1582" << endl;
 			}
 			else
 			{
-				string Months[] = { "January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December" };
-				string Days[] = { "MO","TU","WE","TH","FR","ST","SU" };
+				string months[] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+				string days[] = { "S", "M", "T", "W", "T", "F", "S" };
+
 				for (int i = 0; i < 12; i++)
 				{
-					cout << Months[i] <<": "<< endl;
-					cout << endl;
-					cout << "\t";
+					cout << months[i] << endl;
 					for (int j = 0; j < 7; j++)
 					{
-						cout << Days[j]<< "\t";
+						cout << setw(3) << days[j];
+					}
+					cout << endl;
+					int startDay = Zeller(1, i + 1, year);
+					int daysInMonth = dayInMonth(i + 1, year);
+
+					for (int k = 0; k < startDay; k++)
+					{
+						cout<<setw(3)<< " ";
+					}
+
+					for (int d = 1; d <= daysInMonth; d++) 
+					{
+						cout << setw(3) << d;
+						if ((d + startDay) % 7 == 0)
+						{
+							cout << endl;
+						}
 					}
 					cout << endl;
 					cout << endl;
@@ -1313,7 +1354,140 @@ public:
 };
 
 int main() {
-	Date d;
-	d.Execute();
+	Date date;
+	date.execute();
+	return 0;
+}
+*/
+
+//Bai 17: Viết chương trình tạo lịch trực cho 5 bạn: A, B, C, D, E. Nhập năm và thứ (0 - 6, 0 là Chúa Nhật, 1 là thứ Hai, …) cho ngày đầu năm. Sau đó nhập một tháng 
+//trong năm và in lịch trực của tháng đó.Lưu ý 5 bạn trực lần lượt theo thứ tự trên,
+//ngày Chúa nhật không ai trực và bạn A sẽ trực ngày đầu tiên của năm.
+
+#include<iostream>
+#include <string>
+#include<iomanip>
+
+using namespace std;
+
+class Date
+{
+private:
+	int day;
+	int month;
+	long year;
+	int dayInWeek;
+
+	void input()
+	{
+		cout << "Enter year: ";
+		cin >> year;
+		cout << "Enter month: ";
+		cin >> month;
+	}
+
+	int Zeller(int d, int m, int y)
+	{
+		if (m == 1)
+		{
+			m = 13;
+			y = y - 1;
+		}
+		else if (m == 2)
+		{
+			m = 14;
+			y = y - 1;
+		}
+
+		int q = d;  //Ngày
+		int K = y % 100;    //Nam cua the ky
+		int J = y / 100;    //So the ky
+
+		int h = (q + (13 * (m + 1)) / 5 + K + (K / 4) + (J / 4) + (5 * J)) % 7;
+
+		int dayOfWeek = ((h + 5) % 7) + 1; //Chuyển đổi kết quả để phù hợp với định dạng 1-7 (Chủ nhật - Thứ bảy)
+
+		return dayOfWeek;
+	}
+
+	int dayInMonth(int month, int year)
+	{
+		if (month == 4 || month == 6 || month == 9 || month == 11)
+		{
+			return 30;
+		}
+		else if (month == 2)
+		{
+			if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)
+			{
+				return 29;
+			}
+			else
+			{
+				return 28;
+			}
+		}
+		else
+		{
+			return 31;
+		}
+	}
+public:
+	Date()
+	{
+		day = 0;
+		month = 0;
+		year = 0;
+	}
+
+	void execute()
+	{
+		do
+		{
+			input();
+			if (year < 1583) {
+				cout << "Year must be greater than 1582" << endl;
+			}
+			else if (month < 1 || month > 12)
+			{
+				cout << "Month must be from 1 to 12" << endl;
+			}
+			else
+			{
+				string days[] = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
+				string student[] = { "A", "B", "C", "D", "E"};
+				for (int i = dayInWeek; i < 7; i++)
+				{
+					cout << setw(5) << days[i];
+				}
+				cout << endl;
+				int startDay = Zeller(1, month, year);
+				int daysInMonth = dayInMonth(month, year);
+
+				for (int j = 0; j < startDay; j++)
+				{
+					cout << setw(5) << " ";
+				}
+
+				for (int d = 1; d <= daysInMonth; d++)
+				{
+					string label = student[(d - 1) % 5];
+					cout << setw(5) << (to_string(d) + "[" + label + "]");
+					if ((d + startDay) % 7 == 0)
+					{
+						cout << endl;
+					}
+				}
+			}
+			cout << endl;
+		} while (true);
+	}
+};
+
+
+int main() 
+{
+	Date date;
+	date.execute();
 	return 0;
 }
