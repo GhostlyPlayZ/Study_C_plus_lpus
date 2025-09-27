@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "F:\\C\u002B\u002B\\StudyWork\\Study_C_plus_lpus\\",
+  "WorkspaceRootPath": "E:\\Hacker rank\\Study_C_plus_lpus\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F3896BB2-81E4-4CC9-A289-9F658C6271E0}|300_bai_code.vcxproj|F:\\C\u002B\u002B\\StudyWork\\Study_C_plus_lpus\\300_bai_code.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{F3896BB2-81E4-4CC9-A289-9F658C6271E0}|300_bai_code.vcxproj|E:\\Hacker rank\\Study_C_plus_lpus\\300_bai_code.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F3896BB2-81E4-4CC9-A289-9F658C6271E0}|300_bai_code.vcxproj|solutionrelative:300_bai_code.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -14,8 +14,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
@@ -24,11 +28,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "300_bai_code.cpp",
-              "DocumentMoniker": "F:\\C\u002B\u002B\\StudyWork\\Study_C_plus_lpus\\300_bai_code.cpp",
+              "DocumentMoniker": "E:\\Hacker rank\\Study_C_plus_lpus\\300_bai_code.cpp",
               "RelativeDocumentMoniker": "300_bai_code.cpp",
-              "ToolTip": "F:\\C\u002B\u002B\\StudyWork\\Study_C_plus_lpus\\300_bai_code.cpp",
+              "ToolTip": "E:\\Hacker rank\\Study_C_plus_lpus\\300_bai_code.cpp",
               "RelativeToolTip": "300_bai_code.cpp",
-              "ViewState": "AgIAAK4FAAAAAAAAAAAAAGcFAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAPQFAAAAAAAAAAAAAAgGAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-03T08:34:21.942Z",
               "EditorCaption": ""

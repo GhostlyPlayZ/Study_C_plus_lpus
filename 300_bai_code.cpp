@@ -1363,7 +1363,7 @@ int main() {
 //Bai 17: Viết chương trình tạo lịch trực cho 5 bạn: A, B, C, D, E. Nhập năm và thứ (0 - 6, 0 là Chúa Nhật, 1 là thứ Hai, …) cho ngày đầu năm. Sau đó nhập một tháng 
 //trong năm và in lịch trực của tháng đó.Lưu ý 5 bạn trực lần lượt theo thứ tự trên,
 //ngày Chúa nhật không ai trực và bạn A sẽ trực ngày đầu tiên của năm.
-
+/*
 #include<iostream>
 #include <string>
 #include<iomanip>
@@ -1489,5 +1489,70 @@ int main()
 {
 	Date date;
 	date.execute();
+	return 0;
+}
+*/
+
+
+//Bài 18: Viết chương trình nhập vào số giờ, xuất ra số tương đương tính theo tuần,
+//theo ngày và theo giờ.
+
+#include<iostream>
+#include <iomanip>
+using namespace std;
+
+class Time 
+{
+private:
+	double inputHour;
+	double week;
+	double day;
+	int hour;
+
+	void input()
+	{
+		cout << "Enter hour: ";
+		cin >> inputHour;
+	}
+
+	double dayRemain(double week)
+	{
+		int w = week - (int)week;
+		return w;
+	}
+public:
+	Time()
+	{
+		inputHour=0;
+		week=0;
+		day=0;
+		hour=0;
+	}
+
+	void execute()
+	{
+		do
+		{
+			input();
+			if (inputHour <= 0)
+			{
+				cout << "Invalid hour";
+			}
+			else
+			{
+				week = inputHour / 168; //1 ngày = 24 giờ->1 tuần = 7 ngày = 24 x 7 = 168 giờ
+
+				cout << "Week: " <<fixed<< setprecision(0) << floor(week) << endl;
+				cout << dayRemain(week);
+			}
+			cout << endl;
+		} while (true);
+	}
+};
+
+int main()
+{
+	Time time;
+	time.execute();
 	return 0;
 }
