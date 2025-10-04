@@ -1496,7 +1496,7 @@ int main()
 
 //Bài 18: Viết chương trình nhập vào số giờ, xuất ra số tương đương tính theo tuần,
 //theo ngày và theo giờ.
-
+/*
 #include<iostream>
 #include <iomanip>
 using namespace std;
@@ -1504,9 +1504,9 @@ using namespace std;
 class Time 
 {
 private:
-	double inputHour;
-	double week;
-	double day;
+	int inputHour;
+	int week;
+	int day;
 	int hour;
 
 	void input()
@@ -1515,11 +1515,13 @@ private:
 		cin >> inputHour;
 	}
 
-	double dayRemain(double week)
+	double calDay(double week)
 	{
-		int w = week - (int)week;
-		return w;
+		int integerPart = (int)week; //Tach lay phan nguyen
+		double decimalPart = week - integerPart; //Tach lay phan thuc
+		return decimalPart;
 	}
+
 public:
 	Time()
 	{
@@ -1541,9 +1543,11 @@ public:
 			else
 			{
 				week = inputHour / 168; //1 ngày = 24 giờ->1 tuần = 7 ngày = 24 x 7 = 168 giờ
-
-				cout << "Week: " <<fixed<< setprecision(0) << floor(week) << endl;
-				cout << dayRemain(week);
+				day = (inputHour - ((int)week * 168))/24;
+				hour = (inputHour - ((int)week * 168)) - (day * 24);
+				cout << "Week: "<< week << endl;
+				cout << "Day: " << day << endl;
+				cout << "Hour: " << hour << endl;
 			}
 			cout << endl;
 		} while (true);
@@ -1556,3 +1560,6 @@ int main()
 	time.execute();
 	return 0;
 }
+*/
+
+//Bai 19: 
